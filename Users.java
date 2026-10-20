@@ -13,23 +13,18 @@ import java.util.*;
 public class Users {
     private String Username;
     private String Password;
+    private String Blank = "Blank";
+    private int ghost = 0;
+    private float casper = 0.0f;
+    private boolean blank = true;
 
     /* INTEGERS */
     private int SessionID;
 
     /* HASHMAPS */
-    private HashMap<Integer, String> Admin_Usernames = new HashMap<>(); // ID and username
-    private HashMap<Integer, String> Admin_Passwords = new HashMap<>(); // ID and Password
-    private ArrayList<String[]> Admin_Rest = new ArrayList<>(); // rest of the admin details
+    private HashMap<String, String> LoginInfo = new HashMap<String, String>(); // Username & Password
+    // private HashMap<> Blank_Map = new HashMap<>(); // ID and Password
     // private final Verification obj_Verify = new Verification(Admin_Rest); //all methods use this
-    //public Admin obj_admin; not this assingment
-    //even if public it can only be used if login is successful
-    //Made Public as is the only way for a logged user to have access to admin.
-    //Else the connection is lost.
-
-    private static int AdminID_Generator(){
-        return (int) (Math.random() * (100-1)+1);
-    } //verify when adding new
 
     private boolean Login(){
         Scanner in = new Scanner(System.in);
@@ -38,11 +33,7 @@ public class Users {
         System.out.println("Enter password: ");
         String password = in.nextLine();
 
-
-        // String test = obj_Verify.verify_Login(username, password); not this assignment
         String holder = new Scanner(System.in).nextLine();
-        //means the values are assignable
-        // pretty useless case the flag is the only thing passed.
         return switch (holder) {
             case "username" -> {
                 System.out.println("Username is incorrect");
@@ -76,37 +67,62 @@ public class Users {
         }
         return flag ;
     }
-    // has a counter system to keep the user from trying an unreasonable amount of times if credentials aren't known
+    // has a counter system to keep the user from trying an unreasonable amount of times if credentials aren't known.
+    // Can be improved to have scalability in mind.
 
-    private boolean Logout(){
+    public boolean Logout(){
         boolean flag = false;
-        Scanner in = new Scanner(System.in);
-        System.out.println("Are you sure you want to Logout?\nyes or no");
-        String input = in.nextLine();
+        do {
+            Scanner in = new Scanner(System.in);
+            System.out.println("Are you sure you want to Logout?\nyes or no");
+            String input = in.nextLine();
 
-        if (input.equals("yes")){
-            //flag = obj_admin.logout(); not this assignment
-            //pass this on to the obj_admin class
-        } else if  (input.equals("no")){
-            System.out.println("what would you like to do?");
-        } else {
-            System.out.println("Invalid input");
-        }
+            try {
+                assert input != null;
+                if (input.equalsIgnoreCase(" ")) {
+                    System.out.println("Enter an option");
+                }
+            } catch (NullPointerException e) {
+                System.out.println("Enter an option");
+            }
+
+            if (input.equals("yes")) {
+                flag = true;
+                //flag = obj_admin.logout(); not this assignment
+                //pass this on to the obj_admin class
+            } else if (input.equals("no")) {
+                System.out.println("what would you like to do?");
+            } else {
+                System.out.println("Invalid input");
+            }
+
+            if (flag){
+                System.out.println("Logout Successful");
+            } else {
+                System.out.println("Logout Failed");
+            }
+        } while (!flag);
+        // This needs to be worked on again as it won't function logically
+
 
         return flag;
-    } //works
-    public void LogoutT(){
-        if  (Logout()){
-            System.out.println("Logout Successful");
-        } else {
-            System.out.println("Logout Failed");
-        }
-    } // works
+    }
 
-    public Users() {
-        this.SessionID = (int)(Math.random()*1000000);
-        boolean AdminAccess = false;
-        int num = AdminID_Generator();
+    private void  Initialisation(){
+        this.LoginInfo.put("PostgreSuperAdmin", "kafka");//Super Admin for Postgre
+        this.LoginInfo.put("PostgreSuperAdminPassword", "kafka123");
+    } // this key needs to be hidden from git.
+
+    public void addUser(String username, String password){
+        this.LoginInfo.put("username", username);
+        this.LoginInfo.put("password", password);
+    }
+
+    public Users(String username, String password) {
+
+
     }
 }
 
+///  workflow
+///  The Login or Registration page comes through Users to store data
