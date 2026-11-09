@@ -16,27 +16,39 @@ public class Users {
     private String Blank = "Blank";
     private int ghost = 0;
     private float casper = 0.0f;
-    private boolean blank = true;
+    private boolean LoggedIn;
 
     /* INTEGERS */
     private int SessionID;
 
     /* HASHMAPS */
     private HashMap<String, String> LoginInfo = new HashMap<String, String>(); // Username & Password
-    // private HashMap<> Blank_Map = new HashMap<>(); // ID and Password
-    // private final Verification obj_Verify = new Verification(Admin_Rest); //all methods use this
 
     private boolean Login(){
         Scanner in = new Scanner(System.in);
         System.out.println("Enter username: ");
-        String username = in.nextLine();
+        String Input_username = in.nextLine(); //input
         System.out.println("Enter password: ");
-        String password = in.nextLine();
+        String Input_password = in.nextLine(); //input
 
-        String holder = new Scanner(System.in).nextLine();
-        return switch (holder) {
-            case "username" -> {
-                System.out.println("Username is incorrect");
+        String holder; //username
+        //Check #1
+        //this.LoginInfo.contains(Input_username) //has to be boolean done
+        //if (false){
+        //  holder="username";
+        //}
+
+        //Check #2 //Password
+        // String storedPassword=this.LoginInfo.get(Input_username)
+        // if (storedPassword==Input_password){
+        //      LoggedIn = true;
+        //}
+
+
+
+        return switch (Input_password) { //Change this
+            case "username" -> { //zero verification checks
+                System.out.println("Username is not found");
                 yield false;
             }
             case "password" -> {
@@ -45,10 +57,11 @@ public class Users {
             }
             case "both" -> {
                 System.out.println("Both username and password are incorrect");
+                // if we only do checks on the button request rather than actively
                 yield false;
             }
             default -> true;
-        };
+        }; //this does nothing currently 09/11/2026
 
     }
     public boolean Login_AttemptCounter(){
@@ -57,7 +70,7 @@ public class Users {
         while (count < 5){
             flag = Login();
             if (flag){
-                //obj_admin = new Admin(Username,Password); // not this assignment
+
                 break;
             }
             count++;
@@ -72,36 +85,36 @@ public class Users {
 
     public boolean Logout(){
         boolean flag = false;
-        do {
-            Scanner in = new Scanner(System.in);
-            System.out.println("Are you sure you want to Logout?\nyes or no");
-            String input = in.nextLine();
 
+        System.out.println("Are you sure you want to Logout?\nyes or no");
+        String input = new Scanner(System.in).nextLine();
+        do{
             try {
                 assert input != null;
                 if (input.equalsIgnoreCase(" ")) {
                     System.out.println("Enter an option");
-                }
+                } // needs better empty string checks because "  " and " " are different
             } catch (NullPointerException e) {
-                System.out.println("Enter an option");
+                System.out.println("Enter an option.");
             }
+        } while(!flag); //the loop is focused only on the error or blank check Verification class
 
-            if (input.equals("yes")) {
-                flag = true;
-                //flag = obj_admin.logout(); not this assignment
-                //pass this on to the obj_admin class
-            } else if (input.equals("no")) {
-                System.out.println("what would you like to do?");
-            } else {
-                System.out.println("Invalid input");
-            }
+        if (input.equalsIgnoreCase("yes")) {
+            flag = true;
+            LoggedIn = false;
+        } else if (input.equalsIgnoreCase("no")) {
+            System.out.println("what would you like to do?");
+            // Back to main menu
+        } else {
+            System.out.println("Invalid input");
+        }
 
-            if (flag){
-                System.out.println("Logout Successful");
-            } else {
-                System.out.println("Logout Failed");
-            }
-        } while (!flag);
+        if (flag){
+            System.out.println("Logout Successful");
+        } else {
+            System.out.println("Logout Failed");
+        }
+
         // This needs to be worked on again as it won't function logically
 
 
@@ -124,5 +137,25 @@ public class Users {
     }
 }
 
+class Verification{
+
+    private String username;
+    private String password;
+
+    private boolean ExistsCheck(){
+        return false;
+    }
+
+    private boolean IsLoggedIn(){
+        return false;
+    }
+
+    public Verification(String TypeOfVerification) {
+        //Input validation
+        //ExistChecks
+        //Currently Logged in that runs concurrently with exists checks
+        //Verify user.
+    }
+}
 ///  workflow
 ///  The Login or Registration page comes through Users to store data
