@@ -1,9 +1,11 @@
+package Sessions;
+
 import java.util.*;
 
 /*
 * Description
 *
-* Users is a level system Creation/Login Class.
+* Sessions.Users is a level system Creation/Login Class.
 *
 * Using Password-Username pairs to query a db for a matching pair
 *
@@ -14,8 +16,8 @@ public class Users {
     private String Username;
     private String Password;
     private String Blank = "Blank";
-    private int ghost = 0;
-    private float casper = 0.0f;
+    private int IntBlank = 0;
+    private float FloatBlank = 0.0f;
     private boolean LoggedIn;
 
     /* INTEGERS */
@@ -97,7 +99,7 @@ public class Users {
             } catch (NullPointerException e) {
                 System.out.println("Enter an option.");
             }
-        } while(!flag); //the loop is focused only on the error or blank check Verification class
+        } while(!flag); //the loop is focused only on the error or blank check Sessions.Verification class
 
         if (input.equalsIgnoreCase("yes")) {
             flag = true;
@@ -158,4 +160,4 @@ class Verification{
     }
 }
 ///  workflow
-///  The Login or Registration page comes through Users to store data
+///  The Login or Registration page comes through Sessions.Users to store data

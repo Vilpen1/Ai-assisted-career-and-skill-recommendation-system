@@ -1,3 +1,5 @@
+import database.Database;
+
 public class Main {
 
 
@@ -5,6 +7,7 @@ public class Main {
         System.out.println("Welcome to Kafca, your Ai assisted application designed to help students find their careers.");
 
         Database db = new Database();
-        db.getConnected();
+        db.Connect();
+        db.Disconnect();
     }
 }
