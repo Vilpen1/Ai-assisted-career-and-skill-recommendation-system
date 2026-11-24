@@ -133,9 +133,8 @@ public class Users {
         this.LoginInfo.put("password", password);
     }
 
+    //Constructor
     public Users(String username, String password) {
-
-
     }
 }
 
