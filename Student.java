@@ -10,8 +10,17 @@ public class Student extends Users {
     private String address;
     private int age;
     private String currentDegree;
-    private String skillProf; //what skill they are best suited to
+    private String skills;//what skill they are best suited to
+    private String careerPreferences;
+    private int careerSuitabilityScore;
 
+
+    //Takes in the students current degree, skills, and career preference, looks at the selected career and generates a suitability score based on that careers requirements and the students current degree and skills
+    public int CalculateSuitabilityScore(Career career) {
+
+        return careerSuitabilityScore;
+    }
+    
     //constructor
     public Student(int id, String fullName, String userName, String password,String dateOfBirth, String address, int age, String currentDegree, String skillProf){
         super(userName, password ); //matches the username from the User class to the Student class
@@ -22,7 +31,7 @@ public class Student extends Users {
         this.address = address;
         this.age = age;
         this.currentDegree = currentDegree;
-        this.skillProf = skillProf;
+        this.skills = skillProf;
     }
 
     //display the student that was made in Main
@@ -35,6 +44,6 @@ public class Student extends Users {
         System.out.println("Address: " + address);
         System.out.println("Age: " + age);
         System.out.println("Current Degree: " + currentDegree);
-        System.out.println("Skill Profile: " + skillProf);
+        System.out.println("Skill Profile: " + skills);
     }
 }
