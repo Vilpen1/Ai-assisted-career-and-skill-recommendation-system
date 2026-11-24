@@ -1,5 +1,8 @@
 import database.Database;
 
+import java.util.EnumSet;
+import java.util.Set;
+
 public class Main {
     private void browse(){}
     private void CareerTest(){}
@@ -13,8 +16,14 @@ public class Main {
         // db.Disconnect();
         // helloooo
 
-        Student newStudent = new Student(1, "Fair","Vilpen","dude","12/05/2006","65 eliz",21,"software","coding");
+
+
+        //Test for creating a student and their respective student profile
+        Student newStudent = new Student(1, "Fair","Vilpen","dude","12/05/2006","65 eliz",21);
+        newStudent.CreateStudentProfile(Degree.ComputerScience,EnumSet.of(Skill.Coding, Skill.Teamwork) );
+        newStudent.studentProfile.addSkill(Skill.ForeignLanguages);
         newStudent.DisplayStudent();
+        newStudent.DisplayStudentProfile();
         }
 
 
