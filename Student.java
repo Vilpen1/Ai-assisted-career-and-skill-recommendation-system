@@ -23,7 +23,7 @@ public class Student extends Users {
     
     //constructor
     public Student(int id, String fullName, String userName, String password,String dateOfBirth, String address, int age, String currentDegree, String skillProf){
-        super(userName, password ); //matches the username from the User class to the Student class
+        super(userName, password ); //matches the username/password from the User class to the Student class
         this.id = id;
         this.fullName = fullName;
         this.userName = userName;
