@@ -34,6 +34,7 @@ public class Student extends Users {
         this.id = id;
         this.fullName = fullName;
         this.userName = userName;
+        this.password = password;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.age = age;
