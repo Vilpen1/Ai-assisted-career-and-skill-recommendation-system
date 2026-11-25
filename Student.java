@@ -24,7 +24,6 @@ public class Student extends Users {
 
     //Takes in the students current degree, skills, and career preference, looks at the selected career and generates a suitability score based on that careers requirements and the students current degree and skills
     public int CalculateSuitabilityScore(Career career) {
-
         return careerSuitabilityScore;
     }
     

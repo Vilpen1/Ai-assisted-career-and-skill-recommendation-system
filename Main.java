@@ -24,6 +24,11 @@ public class Main {
         newStudent.studentProfile.addSkill(Skill.ForeignLanguages);
         newStudent.DisplayStudent();
         newStudent.DisplayStudentProfile();
+
+        Career newCareer = new Career(1,"Lead Developer","Coding job", "Coding");
+        newCareer.CreateRequirements(EnumSet.of(Skill.Coding,Skill.Teamwork),Degree.ComputerScience);
+        newCareer.DisplayCareer();
+        newCareer.DisplayCareerRequirements();
         }
 
 
